@@ -12,6 +12,12 @@ app.get("/api/chat", (req, res) => {
   res.send(chats);
 });
 
+app.get("/api/chat/:id", (req, res) => {
+  // console.log(req.params.id)
+  const singleChat = chats.find((chat) => chat._id === req.params.id);
+  res.send(singleChat);
+});
+
 app.listen(PORT, (req, res) => {
   console.log(`API listening on port http://localhost:${PORT}`);
 });
