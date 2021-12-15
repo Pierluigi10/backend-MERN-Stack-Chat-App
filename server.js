@@ -4,6 +4,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { chats } from "./data/data.js";
 import cors from "cors";
+import colors from "colors";
 
 dotenv.config();
 
@@ -32,5 +33,8 @@ app.get("/api/chat/:id", (req, res) => {
 });
 
 app.listen(PORT, (req, res) => {
-  console.log(`API listening on port http://localhost:${PORT}`);
+  console.log(
+    "API Listening on port ".yellow +
+      `http://localhost:${PORT}`.yellow.underline.bold
+  );
 });

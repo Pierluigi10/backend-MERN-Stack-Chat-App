@@ -5,7 +5,5 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() =>
-    console.log(`MongoDB Connected: ${mongoose.connection.host}`.cyan.underline)
-  )
-  .catch((err) => console.log(`Error: ${err.message}`.red.bold));
+  .then(() => console.log("DB connect established".cyan.underline))
+  .catch((err) => console.log(("[ERROR] Connection failed", err).red.bold));
