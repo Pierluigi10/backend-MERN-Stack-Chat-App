@@ -1,11 +1,21 @@
 import express from "express";
 import { chats } from "./data/data.js";
 import dotenv from "dotenv";
+import cors from "cors";
 
-dotenv.config()
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+
+app.use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true, // accept incoming cookies
+    })
+  );
 
 app.get("/", (req, res) => {
   res.send("Api is running");
