@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { chats } from "./data/data.js";
 import cors from "cors";
 import colors from "colors";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 
@@ -22,15 +23,17 @@ app.get("/", (req, res) => {
   res.send("Api is running");
 });
 
-app.get("/api/chat", (req, res) => {
-  res.send(chats);
-});
+// app.get("/api/chat", (req, res) => {
+//   res.send(chats);
+// });
 
-app.get("/api/chat/:id", (req, res) => {
-  // console.log(req.params.id)
-  const singleChat = chats.find((chat) => chat._id === req.params.id);
-  res.send(singleChat);
-});
+// app.get("/api/chat/:id", (req, res) => {
+//   // console.log(req.params.id)
+//   const singleChat = chats.find((chat) => chat._id === req.params.id);
+//   res.send(singleChat);
+// });
+
+app.use("/api/user", userRoutes);
 
 app.listen(PORT, (req, res) => {
   console.log(
