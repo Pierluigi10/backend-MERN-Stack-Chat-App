@@ -6,9 +6,9 @@ import { chats } from "./data/data.js";
 import cors from "cors";
 import colors from "colors";
 import userRoutes from "./routes/userRoutes.js";
+import { errorHandler, notFound } from "./middleswares/errorMiddleware.js";
 
 dotenv.config();
-
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -36,6 +36,9 @@ app.get("/", (req, res) => {
 // });
 
 app.use("/api/user", userRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, (req, res) => {
   console.log(
