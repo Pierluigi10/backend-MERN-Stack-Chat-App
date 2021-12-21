@@ -1,8 +1,10 @@
 import User from "../models/userModel.js";
+// import asyncHandler from "express-async-handler";
+import { generateToken } from "../config/generateToken.js";
 
-export const registerUser = async (res, req) => {
+export const registerUser = async (req, res) => {
   const { name, email, password, pic } = req.body;
-  if (!name || email || password) {
+  if (!name || !email || !password) {
     res.status(400);
     throw new Error("Please enter all the fields");
   }
@@ -22,7 +24,7 @@ export const registerUser = async (res, req) => {
       name: user.name,
       email: user.email,
       pic: user.pic,
-      token:generateToken(user._id)
+      token: generateToken(user._id),
     });
   } else {
     res.status(400);
