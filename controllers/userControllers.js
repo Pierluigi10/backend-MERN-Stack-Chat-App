@@ -31,3 +31,19 @@ export const registerUser = async (req, res) => {
     throw new Error("Failed to create the user");
   }
 };
+
+
+export const authUser = async (req, res) => {
+  const {email, password} = req.body;
+  const user = await User.findOne({email})
+
+  if (user && (await User.matchPassword(oassword))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      pic: user.pic,
+      token: generateToken(user._id),
+    });
+  }
+}
